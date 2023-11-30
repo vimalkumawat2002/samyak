@@ -1,125 +1,114 @@
 import React from 'react'
-import {View,Text,StyleSheet,Image,ScrollView,TouchableOpacity} from 'react-native'
-import img from '../images/img2.png'
+import { View, Text, StyleSheet, Image,FlatList, TouchableOpacity } from 'react-native'
+import { SliderBox } from "react-native-image-slider-box";
 import img1 from '../images/img1.png'
-import img2 from '../images/img5.png'
+import{imageslider,data} from '../data/data'
+function Home({ navigation }) {
 
+    function renderitem(data){
+      
+       return(
+        
+        <View style={[styles.boxshadow,styles.productrender]}>
+        <TouchableOpacity onPress={()=>navigation.navigate('product',data)}>
+        
+        <Image source={data.item.image} style={{width:'100%',height:200}}/>
+        <Text>{data.item.productname}</Text>
+        </TouchableOpacity>
+        </View>
+        
+       )
+    }
 
- function Home({navigation}){
+    return (
+       
+            <View style={styles.container}>
+                <View style={styles.headerview}>
+                    <View style={styles.logoview}>
+                        <TouchableOpacity onPress={() => navigation.navigate('product')}>
+                            <Image source={require('../images/img2.png')} style={styles.menuimage} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.textview}>
+                        <Text style={styles.textlogo}>GUDDU</Text>
+                    </View>
 
-    return(
-    <ScrollView>
-    <View style={styles.container}>
-            <View style={styles.headerview}>
-                <View style={styles.logoview}>
-                    <TouchableOpacity onPress={()=>navigation.navigate('product')}>
-                   <Image source={require('../images/img2.png')} style={styles.menuimage}/> 
-                   </TouchableOpacity>
+                     </View>
+                <View>
+                <SliderBox images={imageslider}  autuplay circleLoop/>
                 </View>
-                <View style={styles.textview}>
-                    <Text style={styles.textlogo}>vimal</Text>
-                </View>
-
-                <View style={styles.actionview}>
-                   {/*  <Image source={require('../images/logo/notification.png')} style={styles.menuimage}/> */}
-                </View>
+                <View>
             </View>
-            <View>
-             <Image source={img} style ={{ width:'100%',height:200,}}/> 
-            </View>
-            <View>
-
-
-            <View style={styles.headerview}>
-                
-                
-                <View style={styles.textview}>
-                    <Text style={styles.textlogo1}>GUDDU KUMAWAT</Text>
-                </View>
-                <View style={styles.actionview}>
-                   {/*  <Image source={require('../images/logo/notification.png')} style={styles.menuimage}/> */}
-                </View>
+            <View style={styles.productshow}>
+        <FlatList
+                data={data}
+                renderItem={renderitem}
+                keyExtractor={(item)=>item.index}
+                numColumns={2}
+               />
             </View>
         </View>
-<View>
-
- <Image source={img1} style ={{ width:'100%',height:200,}}/> 
     
-</View>
-<View>
-
-<View style={styles.headerview}>
-                
-                
-                <View style={styles.textview}>
-                    <Text style={styles.textlogo1}>NIKKU KUMAWAT</Text>
-                </View>
-                <View style={styles.actionview}>
-                   {/*  <Image source={require('../images/logo/notification.png')} style={styles.menuimage}/> */}
-                </View>
-            </View>
-
-
-</View>
-<View>
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
- <Image source={img2} style ={{ width:'100%',height:100,}}/> 
-    
-
-
-
-</View>
-
-        </View>
-        </ScrollView>
     )
 }
 export default Home
 
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#fff'
+    container: {
+        flex: 1,
+        backgroundColor: '#fff'
     },
-    headerview:{
-      marginHorizontal:20,
-      marginVertical:20 ,
-      flexDirection:'row' ,
-      alignItems:'center'
+    headerview: {
+        marginHorizontal: 20,
+        marginVertical: 20,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
-    menuimage:{
-        width:30,
-        height:30                    
+    menuimage: {
+        width: 30,
+        height: 30
     },
-    textlogo:{
-        marginHorizontal:10,
-        fontSize:20,
-        fontWeight:'bold'
-        
+    textlogo: {
+        marginHorizontal: 10,
+        fontSize: 20,
+        fontWeight: 'bold'
+
     },
-    textlogo1:{
-        marginHorizontal:10,
-        fontSize:20,
-        fontWeight:'bold'
-        
+    textlogo1: {
+        marginHorizontal: 10,
+        fontSize: 20,
+        fontWeight: 'bold'
+
     },
-   
-    logoview:{
-        flex:1
+
+    logoview: {
+        flex: 1
     },
-    textview:{
-        flex:5,
+    textview: {
+        flex: 5,
     }
     ,
-    actionview:{
-        flex:1,
-        alignItems:'flex-end'
-    }
+    actionview: {
+        flex: 1,
+        alignItems: 'flex-end'
+    },
+    productshow:{
+        flex:1
+    },
+   productrender: {
+    flex:1,
+    marginHorizontal:20,
+    marginVertical:20,
+    borderRadius:40,
+    overflow:'hidden',
+    
+},
+    boxshadow: {
+        shadowColor: 'grey',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.8,
+        shadowRadius: 3,
+      },
 
 })

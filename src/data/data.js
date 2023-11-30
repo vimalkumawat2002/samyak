@@ -23,3 +23,10 @@ export const data=[
                        {"id":13,"productname":"Slim Samsung Galaxy Fold Mobile Phone","rate":1200,"image":require("../images/img16.jpg")},
 ]
 
+
+
+export const imageslider=[
+  require("../images/img1.png"),
+  require("../images/img2.png"),
+  require("../images/img5.png")
+]

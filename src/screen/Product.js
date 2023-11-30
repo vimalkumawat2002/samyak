@@ -1,12 +1,14 @@
 import React from 'react'
 
-import {View,Text,Image,StyleSheet, ScrollView} from 'react-native'
+import {View,Text,Image,StyleSheet, ScrollView,TouchableOpacity} from 'react-native'
 import{data} from '../data/data'
 
-export default function Product(){
-data.map(d=>{
-    console.log(d.productname)
-})
+export default function Product(props){
+console.log(props);
+    console.log(props.route.params.item);
+
+
+
 
     return(
         <View style={styles.container}>
@@ -22,7 +24,9 @@ data.map(d=>{
                 <>
              <View style={styles.productview}>
                  <View style={styles.productviewin}>
+                 <TouchableOpacity onPress={() =>props.navigation.navigate('details')}>
                     <Image source={d.image} style={styles.productimg}/>
+                    </TouchableOpacity>
                    <View style={styles.productviewtext}>
                     <Text style={styles.productimgtext}>{d.productname}</Text>
                     <Text style={styles.productimgtext}>Rs.{d.rate}</Text>
